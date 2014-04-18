@@ -17,15 +17,22 @@
     <![endif]-->
   </head>
   <body>
-    <form method="POST" action="{{ url_for('save') }}">
-    <table class="table table-hover table-bordered">
+    <div class="container-fluid">
+    <form method="POST" action="{{ url_for('save') }}" class="form-inline">
+
+    <div class="row" style="position: fixed; padding: 10px 30px; background: white; border: 1px solid #808080;">
+        <input type="submit" value="SAVE" class="btn btn-primary">
+    </div>
+
+    <div class="row">
+    <table class="table table-hover table-bordered table-responsive">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>Shutterstock Id</th>
                 <th>Title</th>
                 <th>Image</th>
-                <th>Number</th>
-                <th>Keywords</th>
+                <th>Name</th>
+                <th style="width: 200px;">Keywords</th>
             </tr>
         </thead>
 
@@ -38,15 +45,22 @@
                     {{ item.image }}
                     <img width="150" height="167" src="{{ url_for('img', image_id=item.image) }}">
                 </td>
-                <td>
-                    <input type="text" name="number" value="{{ item.number }}">
+                <td class="success">
+                    <input type="text" name="name_{{ item.id }}" value="{{ item.name }}">
                 </td>
-                <td>{{ item.keywords }}</td>
+                <td style="width: 200px; white-space: normal;">
+                    <div class="pull-left">{{ item.keywords }}</div>
+                </td>
             </tr>
         {% endfor %}
         </tbody>
 
     </table>
-    </form>
+
+    </div>
+
+     </form>
+
+    </div>
   </body>
 </html>
