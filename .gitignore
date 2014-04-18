@@ -1,0 +1,5 @@
+ve
+*.pyc
+.idea
+images/full
+items.csv

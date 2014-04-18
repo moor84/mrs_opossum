@@ -1,0 +1,6 @@
+
+# sudo apt-get install libffi-dev
+
+scrapy==0.22
+pillow
+flask
