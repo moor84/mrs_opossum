@@ -6,8 +6,10 @@ from PIL.ExifTags import TAGS
 def run():
     with open('items.csv', 'r') as csvfile:
         reader = csv.DictReader(csvfile)
-        items = [row for row in reader]
 
+    for row in reader:
+        img = Image.open('/home/moorcock/jpegs/{0}'
+                         '.jpg'.format(row['name']))
 
 
 if __name__ == "__main__":

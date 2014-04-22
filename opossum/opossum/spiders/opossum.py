@@ -9,13 +9,16 @@ class OpossumSpider(Spider):
     name = "opossum"
     allowed_domains = ["www.shutterstock.com"]
     start_urls = [
-        "http://www.shutterstock.com/portfolio/search.mhtml?gallery_username=mrsopossum&gallery_landing=1&page=1&safesearch=1&sort_method=newest"
+        # "http://www.shutterstock.com/portfolio/search.mhtml?gallery_username=mrsopossum&gallery_landing=1&page=1&safesearch=1&sort_method=newest"
+        'http://www.shutterstock.com/portfolio/search.mhtml?searchterm=&media_type=vectors&search_cat=&searchtermx=&people_gender=&people_age=&people_ethnicity=&people_number=&color=&lang=ru&search_source=search_form&version=llv1&anyorall=all&safesearch=1&submitter=948064&photographer_name=Mrs.+Opossum&search_group=&orient=&commercial_ok=&show_color_wheel=1&sort_method=newest'
     ]
 
     def parse(self, response):
         hxs = HtmlXPathSelector(response)
         thumbs = hxs.select('//div[@id="grid_cells"]//a[@class="gc_thumb"]/@href').extract()
-        next_page = hxs.select('//a[@id="search-results-next-button"]/@href').extract()[0]
+        next_page = hxs.select('//a[@id="search-results-next-button"]/@href').extract()
+        if next_page:
+            next_page = next_page[0]
 
         for thumb in thumbs:
             url = 'http://www.shutterstock.com{0}'.format(thumb)
