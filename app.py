@@ -31,6 +31,10 @@ def save():
         reader = csv.DictReader(csvfile)
         items = [row for row in reader]
 
+    for item in items:
+        item['id'] = int(item['id'])
+    items = sorted(items, key=lambda i: i['id'])
+
     with open('items.csv', 'wb') as csvfile:
         writer = csv.DictWriter(csvfile, ['name', 'id', 'title', 'image',
                                           'keywords'])
